@@ -1,0 +1,29 @@
+name:                servant-elm-street
+version:             0.0.0.1
+github:              "googleson78/servant-elm-street"
+author:              "Georgi Lyubenov"
+maintainer:          "godzbanebane@gmail.com"
+
+extra-source-files:
+- README.md
+
+description: Generate opinionated elm requests for servant based on elm-street.
+
+ghc-options:
+- -Wall
+- -Werror
+
+dependencies:
+- base >= 4.7 && < 5
+- aeson
+- casing
+- elm-street
+- filepath
+- microlens
+- prettyprinter
+- servant
+- servant-foreign
+- text
+
+library:
+  source-dirs: src

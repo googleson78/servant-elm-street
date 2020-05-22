@@ -1,0 +1,10 @@
+resolver: lts-15.13
+
+packages:
+- .
+
+extra-deps:
+- elm-street-0.1.0.2
+
+# for elm-street
+allow-newer: true

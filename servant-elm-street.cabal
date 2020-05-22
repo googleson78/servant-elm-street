@@ -1,0 +1,43 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.33.0.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: a2d55fb98f0a64fd6a6f190fad9f8053c4575288bd8fdd3e708587a572cab72f
+
+name:           servant-elm-street
+version:        0.0.0.1
+description:    Generate opinionated elm requests for servant based on elm-street.
+homepage:       https://github.com/googleson78/servant-elm-street#readme
+bug-reports:    https://github.com/googleson78/servant-elm-street/issues
+author:         Georgi Lyubenov
+maintainer:     godzbanebane@gmail.com
+build-type:     Simple
+extra-source-files:
+    README.md
+
+source-repository head
+  type: git
+  location: https://github.com/googleson78/servant-elm-street
+
+library
+  exposed-modules:
+      Servant.ElmStreet
+  other-modules:
+      Paths_servant_elm_street
+  hs-source-dirs:
+      src
+  ghc-options: -Wall -Werror
+  build-depends:
+      aeson
+    , base >=4.7 && <5
+    , casing
+    , elm-street
+    , filepath
+    , microlens
+    , prettyprinter
+    , servant
+    , servant-foreign
+    , text
+  default-language: Haskell2010
