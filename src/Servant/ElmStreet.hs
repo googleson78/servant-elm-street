@@ -68,7 +68,7 @@ typeDef req =
         , [defName reqBody' | Just reqBody' <- [req ^. reqBody]]
         , [parens $ hsep
             [ "Result"
-            , "Error"
+            , "Http.Error"
             , assertReturnType req defName
             , arrow
             , "msg"
@@ -309,14 +309,14 @@ primHeaderifier = \case
 pureHeaderifier :: Doc ann
 pureHeaderifier =
   vsep
-    [ "pureHeaderifier : (a -> String) -> String -> a -> Maybe Header"
-    , "pureHeaderifier f name x = Http.header name (f x)"
+    [ "pureHeaderifier : (a -> String) -> String -> a -> Maybe Http.Header"
+    , "pureHeaderifier f name x = Just <| Http.header name (f x)"
     ]
 
 intHeader :: Doc ann
 intHeader =
   vsep
-    [ "intHeader : String -> Int -> Maybe Header"
+    [ "intHeader : String -> Int -> Maybe Http.Header"
     , "intHeader name = Just << Http.header name << String.fromInt"
     ]
 
@@ -344,8 +344,8 @@ primQuerifier = \case
 pureQuerifier :: Doc ann
 pureQuerifier =
   vsep
-    [ "pureQuerifier : (a -> String) -> String -> a -> Maybe QueryParameter"
-    , "pureQuerifier f name x = Url.str name (f x)"
+    [ "pureQuerifier : (a -> String) -> String -> a -> Maybe Url.QueryParameter"
+    , "pureQuerifier f name x = Just <| Url.string name (f x)"
     ]
 
 overMaybe :: Doc ann
