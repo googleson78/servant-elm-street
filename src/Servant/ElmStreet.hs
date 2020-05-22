@@ -35,7 +35,7 @@ import Lens.Micro (each, (^..), (^.))
 import Lens.Micro (to)
 import Servant.Foreign
 import System.FilePath ((<.>), (</>))
-import Text.Casing (toPascal, fromKebab)
+import Text.Casing (toCamel, toPascal, fromKebab)
 import qualified Data.List as List
 import qualified Data.Text as Text
 import qualified Data.Text.IO as Text
@@ -175,8 +175,9 @@ headerNames req = map ((("header" <>) . pascaliseSegment . _argName . _headerArg
 pascaliseSegment :: PathSegment -> Doc ann
 pascaliseSegment = fromString . toPascal . fromKebab . Text.unpack . unPathSegment
 
+-- segments are often kebab-cased, and elm doesn't allow for -s in names
 funName :: FunctionName -> Doc ann
-funName = pretty . Text.concat . capAllButFirst . unFunctionName
+funName = pretty . Text.concat . capAllButFirst . map (Text.pack . toCamel . fromKebab . Text.unpack) . unFunctionName
   where
     capAllButFirst :: [Text] -> [Text]
     capAllButFirst [] = error "Somehow servant gave me an empty FunctionName!"
