@@ -124,8 +124,8 @@ funBody baseUrl req =
         , valueName
         ]
     encodeBody :: Maybe ElmDefinition -> Doc ann
-    encodeBody Nothing = "emptyBody"
-    encodeBody (Just toEncode) = parens $ typeRefEncoder (definitionToRef toEncode) <+> body
+    encodeBody Nothing = "Http.emptyBody"
+    encodeBody (Just toEncode) = "Http.jsonBody <|" <+> parens (typeRefEncoder (definitionToRef toEncode) <+> body)
 
 crossOrigin :: BaseUrl -> [Segment ElmDefinition] -> [(Doc ann, QueryArg ElmDefinition)] -> Doc ann
 crossOrigin baseUrl segments queryParams =
